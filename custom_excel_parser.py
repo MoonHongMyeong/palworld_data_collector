@@ -23,8 +23,13 @@ def to_dict_list(ws):
                     to_dict['name'] = breeding_base_name.strip()
                     to_dict['mating'] = []
                 else:
+                    breeding_target = {}
                     breeding_target_id = cell.offset(row=-1 + offset_row_cnt, column=0).value.split('.')[0]
-                    to_dict['mating'].append({breeding_target_id: cell.value.split('.')[0]})
+                    breeding_target['base'] = to_dict['no']
+                    breeding_target['target'] = breeding_target_id
+                    breeding_target['result'] = cell.value.split('.')[0]
+                    to_dict['mating'].append(breeding_target)
+                    # to_dict['mating']['target'].append({breeding_target_id: cell.value.split('.')[0]})
 
         if rows[0].value is not None:
             offset_row_cnt -= 1
